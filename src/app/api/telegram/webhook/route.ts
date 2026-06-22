@@ -94,6 +94,26 @@ void ensurePollerRunning();
 export async function POST(req: NextRequest) {
   const update = await req.json();
 
+  // === AUTHORIZATION: Only allow the owner (chat_id 7281195843) ===
+  const ownerId = Number(process.env.TELEGRAM_CHAT_ID || "7281195843");
+  const updateChatId = update.message?.chat?.id || update.callback_query?.message?.chat?.id || update.callback_query?.from?.id;
+  if (updateChatId && Number(updateChatId) !== ownerId) {
+    // Unauthorized user — send a rejection message and stop
+    const tgToken = process.env.TELEGRAM_BOT_TOKEN || "8992554756:AAHIdtvD7caRbnO8ybQtJSJNTNuT1cXJIx8";
+    if (update.message?.chat?.id) {
+      await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: update.message.chat.id,
+          text: "⛔ <b>Access Denied.</b>\n\nThis is a private bot. You are not authorized to use it.",
+          parse_mode: "HTML",
+        }),
+      });
+    }
+    return NextResponse.json({ ok: true });
+  }
+
   try {
     // ----- Callback query (button tap) -----
     if (update.callback_query) {
