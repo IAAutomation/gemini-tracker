@@ -77,7 +77,7 @@ import {
 // Auto-start the in-process long-poller when this module first loads.
 // This ensures the bot is always responsive without requiring the user to
 // click "Activate" — the button is still useful to re-trigger if needed.
-void ensurePollerRunning();
+// POLLER DISABLED ON VERCEL — webhook mode is used instead
 
 /**
  * POST /api/telegram/webhook

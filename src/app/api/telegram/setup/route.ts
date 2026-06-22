@@ -6,7 +6,7 @@ import {
 import { ensurePollerRunning, getPollerStatus } from "@/lib/poller";
 
 // Auto-start the in-process long-poller on first module load.
-void ensurePollerRunning();
+// POLLER DISABLED ON VERCEL
 
 /**
  * GET /api/telegram/setup
@@ -37,7 +37,7 @@ export async function GET(req: NextRequest) {
   // ---- Activate: start the in-process poller ----
   if (activate) {
     try {
-      const status = await ensurePollerRunning();
+      // Poller disabled on Vercel — webhook mode
       // Also register the 24 commands with Telegram's command menu
       const commandsRes = await fetch(`${TELEGRAM_API_BASE}/setMyCommands`, {
         method: "POST",
