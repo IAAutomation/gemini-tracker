@@ -1,0 +1,203 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Custom Gemini palette — richer multi-stop gradient system */
+  --color-lime: #E4FD97;
+  --color-lime-bright: #F0FFB0;
+  --color-lime-deep: #C9E66B;
+  --color-forest: #1F2E1E;
+  --color-forest-deep: #15211A;
+  --color-forest-soft: #2D3E2C;
+  --color-forest-mid: #3D523B;
+  --color-forest-light: #4A6B47;
+  --color-sage: #6B8E5A;
+  --color-sage-light: #8FAE5C;
+  --color-amber: #F4C95D;
+  --color-amber-deep: #D9A441;
+  --color-cream: #F5F3DC;
+}
+
+:root {
+  --radius: 1rem;
+
+  /* ============================================================
+     Palette: lime (#E4FD97) on deep forest (#1F2E1E).
+     Forest is darker than before for stronger contrast against
+     lime text. Added amber + sage accents for visual variety
+     in charts and badges. No white, no black.
+     ============================================================ */
+  --background: #E4FD97;
+  --foreground: #1F2E1E;
+
+  --card: #1F2E1E;
+  --card-foreground: #F0FFB0;
+
+  --popover: #C9E66B;
+  --popover-foreground: #1F2E1E;
+
+  --primary: #1F2E1E;
+  --primary-foreground: #E4FD97;
+
+  --secondary: #C9E66B;
+  --secondary-foreground: #1F2E1E;
+
+  --muted: #D6F574;
+  --muted-foreground: #3D523B;
+
+  --accent: #4A6B47;
+  --accent-foreground: #F0FFB0;
+
+  --destructive: #C9534A;
+
+  --border: #4A6B47;
+  --input: #C9E66B;
+  --ring: #2D3E2C;
+
+  /* Chart palette: lime → sage → amber gradient (all on dark cards) */
+  --chart-1: #F0FFB0;
+  --chart-2: #C9E66B;
+  --chart-3: #8FAE5C;
+  --chart-4: #6B8E5A;
+  --chart-5: #F4C95D;
+
+  --sidebar: #1F2E1E;
+  --sidebar-foreground: #E4FD97;
+  --sidebar-primary: #C9E66B;
+  --sidebar-primary-foreground: #1F2E1E;
+  --sidebar-accent: #4A6B47;
+  --sidebar-accent-foreground: #F0FFB0;
+  --sidebar-border: #4A6B47;
+  --sidebar-ring: #C9E66B;
+}
+
+.dark {
+  /* Mirror the light palette — this app always uses the lime/forest combo. */
+  --background: #E4FD97;
+  --foreground: #1F2E1E;
+  --card: #1F2E1E;
+  --card-foreground: #F0FFB0;
+  --popover: #C9E66B;
+  --popover-foreground: #1F2E1E;
+  --primary: #1F2E1E;
+  --primary-foreground: #E4FD97;
+  --secondary: #C9E66B;
+  --secondary-foreground: #1F2E1E;
+  --muted: #D6F574;
+  --muted-foreground: #3D523B;
+  --accent: #4A6B47;
+  --accent-foreground: #F0FFB0;
+  --destructive: #C9534A;
+  --border: #4A6B47;
+  --input: #C9E66B;
+  --ring: #2D3E2C;
+  --chart-1: #F0FFB0;
+  --chart-2: #C9E66B;
+  --chart-3: #8FAE5C;
+  --chart-4: #6B8E5A;
+  --chart-5: #F4C95D;
+  --sidebar: #1F2E1E;
+  --sidebar-foreground: #E4FD97;
+  --sidebar-primary: #C9E66B;
+  --sidebar-primary-foreground: #1F2E1E;
+  --sidebar-accent: #4A6B47;
+  --sidebar-accent-foreground: #F0FFB0;
+  --sidebar-border: #4A6B47;
+  --sidebar-ring: #C9E66B;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-color: #E4FD97;
+    color: #1F2E1E;
+    font-feature-settings: "ss01", "cv01";
+  }
+
+  /* Subtle layered texture for the page background using the palette colors */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(1200px 600px at 5% -10%, rgba(31, 46, 30, 0.18), transparent 60%),
+      radial-gradient(900px 500px at 105% 5%, rgba(244, 201, 93, 0.12), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(74, 107, 71, 0.15), transparent 60%),
+      radial-gradient(1000px 600px at 110% 110%, rgba(31, 46, 30, 0.10), transparent 60%);
+  }
+}
+
+/* Custom scrollbar — deep forest thumb on lime track */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #D6F574;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4A6B47 0%, #2D3E2C 100%);
+  border-radius: 8px;
+  border: 2px solid #D6F574;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2D3E2C 0%, #1F2E1E 100%);
+}
+
+/* Selection */
+::selection {
+  background: #1F2E1E;
+  color: #F0FFB0;
+}
+
+/* Subtle focus ring on all focusable elements */
+*:focus-visible {
+  outline: 2px solid #F4C95D;
+  outline-offset: 2px;
+}

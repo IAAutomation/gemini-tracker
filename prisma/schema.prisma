@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Sale {
+  id             String   @id @default(cuid())
+  date           DateTime @default(now())
+  resellerName   String
+  quantity       Int
+  pricePerUnit   Int
+  revenue        Int
+  profit         Int
+  paymentStatus  String   @default("processing")
+  geminiLink     String   @default("")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([date])
+  @@index([resellerName])
+}
+
+model Setting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}

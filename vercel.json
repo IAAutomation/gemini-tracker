@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "src/app/api/telegram/webhook/route.ts": {
+      "maxDuration": 60
+    }
+  }
+}
