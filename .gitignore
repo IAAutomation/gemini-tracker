@@ -18,3 +18,5 @@ examples/
 tool-results/
 tsconfig.tsbuildinfo
 bun.lock
+.env
+.env.production
